@@ -23,7 +23,7 @@ database.post((req, res, next) => {
                     } else {
                         let database :IDatabase = new Database();
                         database.name = req.body.name;
-                        database.content = req.body.content;
+                        database.content = JSON.stringify(req.body.content);
                         database.save();
                         res.send(database.name + " created with " + database.content)
                     }

@@ -5,7 +5,7 @@ import * as crypto from "crypto";
 
 const router :Router = Router();
 
-const selectAll :IRoute = router.route("/all/:name")
+const selectAll :IRoute = router.route("/all/:name/")
 selectAll.get((req, res, next) => {
     if (req.get("Authentification") == AuthToken ) {
         Database.find({name: req.params.name}, (err: any, Mres: any[]) => {
@@ -24,6 +24,31 @@ selectAll.get((req, res, next) => {
                 }
             } else {
                 res.send("Database doesn't exits");
+            }
+        });
+    } else {
+        res.send("Wrong Authentification token");
+    }
+});
+
+const where :IRoute = router.route("/:name/where/:obj/is/:is/");
+where.get((req, res, next) => {
+    if (req.get("Authentification") == AuthToken ) {
+        Database.find({name: req.params.name}, (err :any, Mres :any[]) => {
+            if (Mres[0]) {
+                let state :number = 0;
+                const content :any[] = JSON.parse(Mres[0].content);
+                content.forEach(element => {
+                    if (element[req.params.obj] == req.params.is) {
+                        res.send(element);
+                        state = 1;
+                    }
+                });
+                if (state != 1) {
+                    res.send("No results found");
+                }
+            } else {
+                res.send("Database doesn't exist");
             }
         });
     } else {
