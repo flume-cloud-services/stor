@@ -18,6 +18,7 @@
     "@types/mongoose-auto-increment": "^5.0.30",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "forever": "^0.15.3",
     "mongoose": "^5.2.4",
     "mongoose-auto-increment": "^5.0.1"
   }
