@@ -14,9 +14,10 @@ const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => 
                     res.send("Database already exists");
                 } else {
                     if (req.body.password) {
+                        console.log("ping");
                         let database :ITable = new Table();
                         database.name = req.body.name;
-                        database.content = req.body.content;
+                        database.content = JSON.stringify(req.body.content);
                         database.password = crypto.createHash("sha256").update(req.body.password).digest("base64");
                         database.save()
                         res.send(database.name + " created with " + database.content)
@@ -32,6 +33,8 @@ const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => 
         } else {
             res.send("Not enough parameters (name, content, ?password");
         }
+    } else {
+        res.send("Wrong authentification token");
     }
 };
 
