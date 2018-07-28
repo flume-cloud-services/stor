@@ -1,0 +1,1 @@
+// Stor.js API wrapper
