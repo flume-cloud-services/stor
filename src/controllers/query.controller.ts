@@ -81,9 +81,40 @@ const wherePut :Handler = (req :Request, res :Response, next :NextFunction) => {
                 res.send("Database doesn't exist");
             }
         });
+    } else {
+        res.send("Wrong Authentification Token");
+    }
+};
+
+const whereDelete :Handler = (req :Request, res :Response, next :NextFunction) => {
+    if (req.get("Authentification") == AuthToken) {
+        Table.find({name: req.params.name}, (err :any, Mres :any[]) => {
+            if (Mres[0]) {
+                let state :number = 0;
+                const content :any[] = JSON.parse(Mres[0].content);
+                content.forEach((element :any) => {
+                    if (element[req.params.obj] == req.params.is) {
+                        content.splice(element);
+                        Table.update({name: req.params.name}, {content: JSON.stringify(content)}, (err :Error, raw :any) => {
+                            if (err) throw err;
+                            res.send(raw);
+                        });
+                        state = 1;
+                    }
+                });
+                if (state != 1) {
+                    res.send("No results found");
+                }
+            } else {
+                res.send("Database doesn't exist");
+            }
+        });
+    } else {
+        res.send("Wrong Authentification Token");
     }
 };
 
 export const selectAllFunc :Handler = selectAll;
 export const whereGetFunc :Handler = whereGet;
 export const wherePutFunc :Handler = wherePut;
+export const whereDeleteFunc :Handler = whereDelete;
