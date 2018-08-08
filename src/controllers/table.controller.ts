@@ -9,8 +9,8 @@ const router :Router = Router();
 const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => {
     if (req.get("Authentification") == AuthToken ) {
         if (req.body.name && req.body.content) {
-            Table.find({name: req.body.name}, (err: any, Mres: any[]) => {
-                if (Mres[0]) {
+            Table.find({name: req.body.name}, (err: any, raw: any[]) => {
+                if (raw[0]) {
                     res.send("Database already exists");
                 } else {
                     if (req.body.password) {
@@ -40,19 +40,19 @@ const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => 
 
 const tableByNameGet :Handler = (req :Request, res :Response, next :NextFunction) => {
     if (req.get("Authentification") == AuthToken ) {
-        Table.find({name: req.params.name}, (err: any, Mres: any[]) => {
-            if (Mres[0]) {
-                if (Mres[0].password != null) {
+        Table.find({name: req.params.name}, (err: any, raw: any[]) => {
+            if (raw[0]) {
+                if (raw[0].password != null) {
                     if (req.get("Password")) {
                         const password :string = req.get("Password") || "";
-                        if (Mres[0].password == crypto.createHash("sha256").update(password).digest("base64")) {
-                            res.send(Mres[0]);
+                        if (raw[0].password == crypto.createHash("sha256").update(password).digest("base64")) {
+                            res.send(raw[0]);
                         }
                     } else {
                         res.send("You have to give a password in the header (\"Password:<yourpassword>\")");
                     }
                 } else {
-                    res.send(Mres[0]);
+                    res.send(raw[0]);
                 }
             } else {
                 res.send("Database doesn't exits");
