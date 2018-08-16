@@ -2,6 +2,8 @@
 
 **STOR** provides a JSON database with the power of HTTP requests
 
+[![Build Status](https://travis-ci.org/dimensi0n/stor.svg?branch=master)](https://travis-ci.org/dimensi0n/stor)
+
 ## 1. Installation
 
 *You need to install NodeJS first*
