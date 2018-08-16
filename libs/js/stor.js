@@ -45,7 +45,7 @@ stor = new Stor("http://localhost:8080", "password")
 let users = stor.Table("dbb33")
 
 /* Create DB
-users.Init([{name: 'bite'},{name: 'marie'}])
+users.Init([{name: 'jean'},{name: 'marie'}])
 .then(res => res.text())
 .then(body => console.log(body))
 */
