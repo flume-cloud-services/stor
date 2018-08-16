@@ -1,6 +1,6 @@
 const stor = require("../stor.js");
 
-Stor = new stor.Stor("http://localhost:8080", "password");
+Stor = new stor.Stor("http://90.109.132.10:8080", "password");
 
 let users = Stor.Table("test");
 
