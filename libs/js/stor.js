@@ -35,6 +35,18 @@ class Table {
             }
         })
     }
+    async Put(champ, is, content) {
+        return await fetch(`${this.link}/query/${this.name}/where/${champ}/is/${is}/`, {
+            method: 'PUT',
+            headers: {
+                'Authentification': this.token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: content
+            })
+        })
+    }
 }
 
 exports.Stor = Stor
@@ -54,4 +66,10 @@ users.Init([{name: 'jean'},{name: 'marie'}])
 users.SelectAll()
 .then(res => res.json())
 .then(body => console.log(JSON.parse(body.content)))
+*/
+
+/* Put
+users.Put('name', 'marie', 'marinette')
+.then(res => res.text())
+.then(body => console.log(body))
 */
