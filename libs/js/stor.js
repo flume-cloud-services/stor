@@ -55,15 +55,35 @@ class Table {
             })
         });
     }
+    async Delete(champ, is) {
+        return await fetch(`${this.link}/query/${this.name}/where/${champ}/is/${is}/`, {
+            method: 'DELETE',
+            headers: {
+                'Authentification': this.token,
+            }
+        });
+    }
+    async Create(content) {
+        return await fetch(`${this.link}/query/${this.name}/create`, {
+            method: 'POST',
+            headers: {
+                'Authentification': this.token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: content
+            })
+        });
+    }
 }
 
 exports.Stor = Stor
 exports.Table = Table
 
-/* Configuration
-stor = new Stor("http://localhost:8080", "password") or new Stor(process.env.STOR_LINK, process.env.STOR_PASSWORD)
+
+stor = new Stor("http://localhost:8080", "password") //or new Stor(process.env.STOR_LINK, process.env.STOR_PASSWORD)
 let users = stor.Table("test")
-*/
+
 
 /* Create DB
 users.Init([{name: 'jean'},{name: 'marie'}])
@@ -71,14 +91,14 @@ users.Init([{name: 'jean'},{name: 'marie'}])
 .then(body => console.log(body))
 */
 
-/* Select All
+
 users.SelectAll()
 .then(res => res.json())
-.then(body => console.log(JSON.parse(body.content)))
-*/
+.then(body => console.log(body.content))
+
 
 /* Get
-users.Get('name', 'mjean')
+users.Get('name', 'marie')
 .then(res => res.text())
 .then(body => console.log(body))
 */
@@ -87,4 +107,11 @@ users.Get('name', 'mjean')
 users.Put('name', 'marie', 'marinette')
 .then(res => res.text())
 .then(body => console.log(body))
+*/
+
+/*Delete
+users.Delete('name', 'user')
+.then(res => res.text())
+.then(body => console.log(body))
+"No results found"
 */
