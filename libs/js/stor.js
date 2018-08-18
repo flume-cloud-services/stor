@@ -80,10 +80,10 @@ class Table {
 exports.Stor = Stor
 exports.Table = Table
 
-
-stor = new Stor("http://localhost:8080", "password") //or new Stor(process.env.STOR_LINK, process.env.STOR_PASSWORD)
+/* Connection
+stor = new Stor("http://localhost:8080", "password") or new Stor(process.env.STOR_LINK, process.env.STOR_PASSWORD)
 let users = stor.Table("test")
-
+*/
 
 /* Create DB
 users.Init([{name: 'jean'},{name: 'marie'}])
@@ -91,11 +91,11 @@ users.Init([{name: 'jean'},{name: 'marie'}])
 .then(body => console.log(body))
 */
 
-
+/* Select all
 users.SelectAll()
 .then(res => res.json())
 .then(body => console.log(body.content))
-
+*/
 
 /* Get
 users.Get('name', 'marie')
