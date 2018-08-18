@@ -12,12 +12,10 @@
   },
   "keywords": [
     "cloud",
-    "bdd",
+    "database",
     "json",
     "mongodb",
-    "api",
-    "http",
-    "https"
+    "api"
   ],
   "author": "Erwan ROUSSEL",
   "license": "MIT",

@@ -109,9 +109,14 @@ users.Put('name', 'marie', 'marinette')
 .then(body => console.log(body))
 */
 
-/*Delete
+/* Delete
 users.Delete('name', 'user')
 .then(res => res.text())
 .then(body => console.log(body))
-"No results found"
+*/
+
+/* Create
+users.Create({name:'pierre'})
+.then(res => res.text())
+.then(body => console.log(body))
 */
