@@ -10,7 +10,7 @@ const router :Router = Router();
 
 
 const selectAll :Handler = (req :Request, res :Response, next :NextFunction) => {
-    if (req.get("Authentification") == AuthToken ) {
+    if (req.get("Authorization") == AuthToken ) {
         Table.find({name: req.params.name}, (err: any, raw: any[]) => {
             if (raw[0]) {
                 if (raw[0].password != null) {
@@ -30,12 +30,12 @@ const selectAll :Handler = (req :Request, res :Response, next :NextFunction) => 
             }
         });
     } else {
-        res.send("Wrong Authentification token");
+        res.send("Wrong Authorization token");
     }
 };
 
 const whereGet :Handler = (req :Request, res :Response, next :NextFunction) => {
-    if (req.get("Authentification") == AuthToken ) {
+    if (req.get("Authorization") == AuthToken ) {
         Table.find({name: req.params.name}, (err :any, raw :any[]) => {
             if (raw[0]) {
                 let state :number = 0;
@@ -54,12 +54,12 @@ const whereGet :Handler = (req :Request, res :Response, next :NextFunction) => {
             }
         });
     } else {
-        res.send("Wrong Authentification token");
+        res.send("Wrong Authorization token");
     }
 };
 
 const wherePut :Handler = (req :Request, res :Response, next :NextFunction) => {
-    if (req.get("Authentification") == AuthToken) {
+    if (req.get("Authorization") == AuthToken) {
         Table.find({name: req.params.name}, (err :any, raw :any[]) => {
             if (raw[0]) {
                 let state :number = 0;
@@ -82,12 +82,12 @@ const wherePut :Handler = (req :Request, res :Response, next :NextFunction) => {
             }
         });
     } else {
-        res.send("Wrong Authentification Token");
+        res.send("Wrong Authorization Token");
     }
 };
 
 const whereDelete :Handler = (req :Request, res :Response, next :NextFunction) => {
-    if (req.get("Authentification") == AuthToken) {
+    if (req.get("Authorization") == AuthToken) {
         Table.find({name: req.params.name}, (err :any, raw :any[]) => {
             if (raw[0]) {
                 let state :number = 0;
@@ -110,12 +110,12 @@ const whereDelete :Handler = (req :Request, res :Response, next :NextFunction) =
             }
         });
     } else {
-        res.send("Wrong Authentification Token");
+        res.send("Wrong Authorization Token");
     }
 };
 
 const create :Handler = (req :Request, res :Response, next :NextFunction) => {
-    if (req.get("Authentification") == AuthToken) {
+    if (req.get("Authorization") == AuthToken) {
         Table.find({name: req.params.name}, (err :any, raw :any[]) => {
             if (raw[0]) {
                 const content :any[] = JSON.parse(raw[0].content);
@@ -129,7 +129,7 @@ const create :Handler = (req :Request, res :Response, next :NextFunction) => {
             }
         });
     } else {
-        res.send("Wrong Authentification Token");
+        res.send("Wrong Authorization Token");
     }
 };
 

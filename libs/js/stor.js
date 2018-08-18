@@ -22,7 +22,7 @@ class Table {
             method: 'POST',
             body: JSON.stringify({name: this.name, content: content}),
             headers: {
-                'Authentification': this.token,
+                'Authorization': this.token,
                 'Content-Type': 'application/json'
             }
         });
@@ -31,7 +31,7 @@ class Table {
         return await fetch(`${this.link}/query/${this.name}/all`, {
             method: 'GET',
             headers: {
-                'Authentification': this.token
+                'Authorization': this.token
             }
         });
     }
@@ -39,7 +39,7 @@ class Table {
         return await fetch(`${this.link}/query/${this.name}/where/${champ}/is/${is}/`, {
             method: 'GET',
             headers: {
-                'Authentification': this.token
+                'Authorization': this.token
             }
         });
     }
@@ -47,7 +47,7 @@ class Table {
         return await fetch(`${this.link}/query/${this.name}/where/${champ}/is/${is}/`, {
             method: 'PUT',
             headers: {
-                'Authentification': this.token,
+                'Authorization': this.token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -59,7 +59,7 @@ class Table {
         return await fetch(`${this.link}/query/${this.name}/where/${champ}/is/${is}/`, {
             method: 'DELETE',
             headers: {
-                'Authentification': this.token,
+                'Authorization': this.token,
             }
         });
     }
@@ -67,7 +67,7 @@ class Table {
         return await fetch(`${this.link}/query/${this.name}/create`, {
             method: 'POST',
             headers: {
-                'Authentification': this.token,
+                'Authorization': this.token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({

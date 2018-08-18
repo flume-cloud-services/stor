@@ -7,7 +7,7 @@ import { Request, Response, NextFunction } from "express-serve-static-core";
 const router :Router = Router();
 
 const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => {
-    if (req.get("Authentification") == AuthToken ) {
+    if (req.get("Authorization") == AuthToken ) {
         if (req.body.name && req.body.content) {
             Table.find({name: req.body.name}, (err: any, raw: any[]) => {
                 if (raw[0]) {
@@ -34,12 +34,12 @@ const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => 
             res.send("Not enough parameters (name, content, ?password");
         }
     } else {
-        res.send("Wrong authentification token");
+        res.send("Wrong Authorization token");
     }
 };
 
 const tableByNameGet :Handler = (req :Request, res :Response, next :NextFunction) => {
-    if (req.get("Authentification") == AuthToken ) {
+    if (req.get("Authorization") == AuthToken ) {
         Table.find({name: req.params.name}, (err: any, raw: any[]) => {
             if (raw[0]) {
                 if (raw[0].password != null) {
@@ -59,7 +59,7 @@ const tableByNameGet :Handler = (req :Request, res :Response, next :NextFunction
             }
         });
     } else {
-        res.send("Wrong Authentification token");
+        res.send("Wrong Authorization token");
     }
 };
 
