@@ -1,4 +1,6 @@
-<h1 align="center">STOR</h1>
+<h1 align="center">
+    <img width="500" src="https://media.discordapp.net/attachments/368671564608045058/480525711283716096/stor.svg.png?width=799&height=549"/>
+</h1>
 
 <p align="center">
     <img src="https://img.shields.io/badge/version-0.9--rc-brightgreen.svg"/>
