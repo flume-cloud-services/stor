@@ -4,9 +4,9 @@ import { AuthToken } from "../config";
 import * as crypto from "crypto";
 import { Request, Response, NextFunction } from "express-serve-static-core";
 
-const router :Router = Router();
+const router: Router = Router();
 
-const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => {
+const tablePost: Handler = (req: Request, res: Response, next: NextFunction) => {
     if (req.get("Authorization") == AuthToken ) {
         if (req.body.name && req.body.content) {
             Table.find({name: req.body.name}, (err: any, raw: any[]) => {
@@ -15,18 +15,18 @@ const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => 
                 } else {
                     if (req.body.password) {
                         console.log("ping");
-                        let database :ITable = new Table();
+                        const database: ITable = new Table();
                         database.name = req.body.name;
                         database.content = JSON.stringify(req.body.content);
                         database.password = crypto.createHash("sha256").update(req.body.password).digest("base64");
-                        database.save()
-                        res.send(database.name + " created with " + database.content)
+                        database.save();
+                        res.send(database.name + " created with " + database.content);
                     } else {
-                        let database :ITable = new Table();
+                        const database: ITable = new Table();
                         database.name = req.body.name;
                         database.content = JSON.stringify(req.body.content);
                         database.save();
-                        res.send(database.name + " created with " + database.content)
+                        res.send(database.name + " created with " + database.content);
                     }
                 }
             });
@@ -38,13 +38,13 @@ const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => 
     }
 };
 
-const tableByNameGet :Handler = (req :Request, res :Response, next :NextFunction) => {
+const tableByNameGet: Handler = (req: Request, res: Response, next: NextFunction) => {
     if (req.get("Authorization") == AuthToken ) {
         Table.find({name: req.params.name}, (err: any, raw: any[]) => {
             if (raw[0]) {
                 if (raw[0].password != null) {
                     if (req.get("Password")) {
-                        const password :string = req.get("Password") || "";
+                        const password: string = req.get("Password") || "";
                         if (raw[0].password == crypto.createHash("sha256").update(password).digest("base64")) {
                             res.send(raw[0]);
                         }
@@ -63,5 +63,5 @@ const tableByNameGet :Handler = (req :Request, res :Response, next :NextFunction
     }
 };
 
-export const tablePostFunc :Handler = tablePost;
-export const tableByNameGetFunc :Handler = tableByNameGet;
+export const tablePostFunc: Handler = tablePost;
+export const tableByNameGetFunc: Handler = tableByNameGet;

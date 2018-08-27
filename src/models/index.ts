@@ -3,8 +3,8 @@ import { MongoError } from "mongodb";
 
 import { MongoUri } from "../config";
 
-const connection :VoidFunction = () => {
-    connect(MongoUri, { useNewUrlParser: true }, (err :MongoError) => {
+const connection: VoidFunction = () => {
+    connect(MongoUri, { useNewUrlParser: true }, (err: MongoError) => {
         if (err) {
             console.log(err.message);
         } else {
@@ -13,6 +13,6 @@ const connection :VoidFunction = () => {
     });
 };
 
-export const Connect :VoidFunction = connection;
+export const Connect: VoidFunction = connection;
 
 export * from "./table.model";

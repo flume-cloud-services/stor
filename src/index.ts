@@ -10,9 +10,9 @@ Connect();
 
 const app: express.Application = express();
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.use("/table/", TableRoutes);
 app.use("/query/", QueryRoutes);
 
-app.listen(PortNumber, () => console.log(PortNumber))
+app.listen(PortNumber, () => console.log(PortNumber));

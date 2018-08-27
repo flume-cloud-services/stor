@@ -1,27 +1,27 @@
 import { Schema, Model, model } from "mongoose";
 
-const TableSchema :Schema = new Schema({
+const TableSchema: Schema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     content: {
         type: String,
-        required: true
+        required: true,
     },
     password: {
         type: String,
-        required: false
-    }
+        required: false,
+    },
 });
 
-const TableModel :Model<any> = model("table", TableSchema);
+const TableModel: Model<any> = model("table", TableSchema);
 
-export const Table :Model<any> = TableModel;
+export const Table: Model<any> = TableModel;
 
 export interface ITable {
-    name :string,
-    content :string,
-    password :string,
-    save: Function
+    name: string;
+    content: string;
+    password: string;
+    save: Function;
 }
