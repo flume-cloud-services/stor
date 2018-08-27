@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/version-0.9--rc-brightgreen.svg"/>
+    <img src="https://img.shields.io/badge/version-1.0-brightgreen.svg"/>
     <a href="https://travis-ci.org/dimensi0n/stor"><img src="https://travis-ci.org/dimensi0n/stor.svg?branch=master"/></a>
     <a href="https://github.com/dimensi0n/stor/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg"/></a>
 </p>
