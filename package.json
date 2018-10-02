@@ -10,7 +10,10 @@
   "author": "Erwan ROUSSEL",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^10.11.3",
+    "concurrently": "^4.0.1",
     "jest": "^23.5.0",
+    "nodemon": "^1.18.4",
     "typescript": "^2.9.2"
   },
   "dependencies": {
