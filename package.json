@@ -4,6 +4,7 @@
   "description": "The icy package",
   "main": "./build/index.js",
   "scripts": {
+    "dev": "concurrently \"tsc --watch\" \"nodemon build/index.js\"",
     "test": "jest ./libs/js/test/",
     "start": "node ./build/index.js"
   },
