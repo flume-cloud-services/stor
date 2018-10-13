@@ -40,10 +40,6 @@ If you want to run it just for testing you can launch it with this command :
 
     npm start
 
-But if you want to run it in background lanch it with forever :
-
-    npx forever start build/app.js
-
 ## 4. Use it
 
 Install the official js library :
