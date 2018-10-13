@@ -3,6 +3,9 @@ import { MongoError } from "mongodb";
 
 import { MongoUri } from "../config";
 
+/**
+ * @function connection - Connect to mongoDB
+ */
 const connection: VoidFunction = () => {
     connect(MongoUri, { useNewUrlParser: true }, (err: MongoError) => {
         if (err) {
