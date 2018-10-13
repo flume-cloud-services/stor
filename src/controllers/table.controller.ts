@@ -6,6 +6,12 @@ import { Request, Response, NextFunction } from "express-serve-static-core";
 
 const router: Router = Router();
 
+/**
+ * @function tablePost - Create table handler
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 const tablePost: Handler = (req: Request, res: Response, next: NextFunction) => {
     if (req.get("Authorization") == AuthToken ) {
         if (req.body.name && req.body.content) {
@@ -38,6 +44,12 @@ const tablePost: Handler = (req: Request, res: Response, next: NextFunction) => 
     }
 };
 
+/**
+ * @function tableByNameGet - Get table by name handler
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 const tableByNameGet: Handler = (req: Request, res: Response, next: NextFunction) => {
     if (req.get("Authorization") == AuthToken ) {
         Table.find({name: req.params.name}, (err: any, raw: any[]) => {
