@@ -1,22 +1,31 @@
 const fetch = require("node-fetch");
 
-// Stor.js API wrapper
+/**
+ * @class Stor - The Stor DB config
+ * @param { string } - Link to your Stor DB
+ * @param { string } - Your token
+ */
 class Stor {
     constructor(link, token) {
         this.link = link;
         this.token = token;
     }
     Table (name) {
-        return new Table(this.link, this.token, name);
+        return new _Table(this.link, this.token, name);
     }
 }
 
-class Table {
+class _Table {
     constructor(link, token, name) {
         this.link = link;
         this.token = token;
         this.name = name;
     }
+
+    /**
+     * @function Init - Init your Table with an object
+     * @param { Object } content 
+     */
     async Init (content) { 
         return await fetch(`${this.link}/table/`, {
             method: 'POST',
@@ -27,6 +36,10 @@ class Table {
             }
         });
     }
+
+    /**
+     * @function SelectAll - Select all your table 
+     */
     async SelectAll() {
         return await fetch(`${this.link}/query/${this.name}/all`, {
             method: 'GET',
@@ -35,6 +48,12 @@ class Table {
             }
         });
     }
+
+    /**
+     * @function Get - Get something where champ ... is ...
+     * @param { string } champ - The champ
+     * @param { string } is - The champ value
+     */
     async Get(champ, is) {
         return await fetch(`${this.link}/query/${this.name}/where/${champ}/is/${is}/`, {
             method: 'GET',
@@ -43,6 +62,13 @@ class Table {
             }
         });
     }
+
+    /**
+     * @function Put - Put something
+     * @param { string } champ - The champ
+     * @param { string } is - The champ value
+     * @param { string } content - The new content
+     */
     async Put(champ, is, content) {
         return await fetch(`${this.link}/query/${this.name}/where/${champ}/is/${is}/`, {
             method: 'PUT',
@@ -55,6 +81,12 @@ class Table {
             })
         });
     }
+
+    /**
+     * @function Delete - Delete something where champ ... is ...
+     * @param { string } champ - The champ
+     * @param { string } is - The champ value
+     */
     async Delete(champ, is) {
         return await fetch(`${this.link}/query/${this.name}/where/${champ}/is/${is}/`, {
             method: 'DELETE',
@@ -63,6 +95,11 @@ class Table {
             }
         });
     }
+
+    /**
+     * @function Create - Create an object in your table
+     * @param { Object } content 
+     */
     async Create(content) {
         return await fetch(`${this.link}/query/${this.name}/create`, {
             method: 'POST',
