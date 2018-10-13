@@ -20,12 +20,12 @@ if(Cors.enabled) {
     const corsOptions = {
         origin: (origin: string, callback: Function) => {
             if (whitelist.indexOf(origin) !== -1) {
-                callback(null, true)
+                callback(null, true);
             } else {
-                callback(new Error('Not allowed by CORS'))
+                callback(new Error("Not allowed by CORS"));
             }
         }
-    }
+    };
 }
 
 app.use("/table/", TableRoutes);
