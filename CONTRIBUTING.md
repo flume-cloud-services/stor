@@ -13,6 +13,12 @@ If you want to contribute just follow the next steps :
 git clone https://github.com/dimensi0n/stor.git
 ```
 
+### Install dependencies
+
+```bash
+npm i
+```
+
 ### Make your modifications 
 
 ```bash
