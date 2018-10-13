@@ -8,6 +8,12 @@ import { Error } from "mongoose";
 
 const router: Router = Router();
 
+/**
+ * @function selectAll - Select all handler 
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 const selectAll: Handler = (req: Request, res: Response, next: NextFunction) => {
     if (req.get("Authorization") == AuthToken ) {
         Table.find({name: req.params.name}, (err: any, raw: any[]) => {
@@ -33,6 +39,12 @@ const selectAll: Handler = (req: Request, res: Response, next: NextFunction) => 
     }
 };
 
+/**
+ * @function whereGet - Get where handler
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 const whereGet: Handler = (req: Request, res: Response, next: NextFunction) => {
     if (req.get("Authorization") == AuthToken ) {
         Table.find({name: req.params.name}, (err: any, raw: any[]) => {
@@ -57,6 +69,12 @@ const whereGet: Handler = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
+/**
+ * @function wherePut - Put where handler
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 const wherePut: Handler = (req: Request, res: Response, next: NextFunction) => {
     if (req.get("Authorization") == AuthToken) {
         Table.find({name: req.params.name}, (err: any, raw: any[]) => {
@@ -85,6 +103,12 @@ const wherePut: Handler = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
+/**
+ * @function whereDelete - Delete where Handler
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 const whereDelete: Handler = (req: Request, res: Response, next: NextFunction) => {
     if (req.get("Authorization") == AuthToken) {
         Table.find({name: req.params.name}, (err: any, raw: any[]) => {
@@ -113,6 +137,12 @@ const whereDelete: Handler = (req: Request, res: Response, next: NextFunction) =
     }
 };
 
+/**
+ * @function create - 'Create' handler
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 const create: Handler = (req: Request, res: Response, next: NextFunction) => {
     if (req.get("Authorization") == AuthToken) {
         Table.find({name: req.params.name}, (err: any, raw: any[]) => {
