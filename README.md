@@ -32,7 +32,7 @@ Open and edit the configuration file `src/config.ts` :
 
 Once you finished to complete this fields just transpile it :
 
-    ./node-modules/typescript/bin/tsc
+    npx tsc
 
 ## 3. Run it
 
@@ -42,7 +42,7 @@ If you want to run it just for testing you can launch it with this command :
 
 But if you want to run it in background lanch it with forever :
 
-    ./node-modules/forever/bin/forever start build/app.js
+    npx forever start build/app.js
 
 ## 4. Use it
 
