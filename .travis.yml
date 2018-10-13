@@ -1,8 +1,0 @@
-language: node_js
-before_install:
-  - npm i -g npm@6.3.0
-  - cd ./stor
-  - npx tsc
-  - node ./build/index.js
-node_js:
-  "10.8.0"
