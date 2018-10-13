@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/version-1.0-brightgreen.svg"/>
+    <img src="https://img.shields.io/badge/version-1.2-brightgreen.svg"/>
     <a href="https://github.com/dimensi0n/stor/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg"/></a>
 </p>
 
@@ -28,7 +28,8 @@ Open and edit the configuration file `src/config.ts` :
     MongoUri is the link to your MongoDB database
     PortNumber is the port number you want the database to run on
     AuthToken is the token you will write for each request on the request header
-
+    Cors is the Cors config object : { enabled (if cors id enabled, by default is true), whitelist (optionnal, the domain you want to be validate) }
+    
 Once you finished to complete this fields just transpile it :
 
     npx tsc
