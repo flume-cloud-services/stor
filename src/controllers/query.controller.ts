@@ -51,12 +51,14 @@ const whereGet: Handler = (req: Request, res: Response, next: NextFunction) => {
             if (raw[0]) {
                 let state: number = 0;
                 const content: any[] = JSON.parse(raw[0].content);
+                const elements: any[] = [];
                 content.forEach((element: any) => {
                     if (element[req.params.obj] == req.params.is) {
-                        res.send(element);
+                        elements.push(element);
                         state = 1;
                     }
                 });
+                res.send(elements);
                 if (state != 1) {
                     res.send("No results found");
                 }
