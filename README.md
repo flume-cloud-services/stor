@@ -23,13 +23,13 @@ And run :
 
 ## 2. Configuration
 
-Open and edit the configuration file `src/config.ts` : 
+Open and edit the configuration file `src/config.ts` :
 
     MongoUri is the link to your MongoDB database
     PortNumber is the port number you want the database to run on
     AuthToken is the token you will write for each request on the request header
     Cors is the Cors config object : { enabled (if cors id enabled, by default is true), whitelist (optionnal, the domain you want to be validate) }
-    
+
 Once you finished to complete this fields just transpile it :
 
     npx tsc
@@ -47,51 +47,52 @@ Install the official js library :
     npm install stor-js
 
 Connect to your Stor database and select your table :
+```js
+const stor = require("stor-js");
 
-    const stor = require("stor-js");
+const Stor = new stor.Stor("link to your Stor database", "Your AuthToken in your configuration file");
 
-    const Stor = new stor.Stor("link to your Stor database", "Your AuthToken in your configuration file");
-
-    let users = Stor.Table("users");
+let users = Stor.Table("users");
+```
 
 Then init your Stor database :
-
-    users.Init([])
+```js
+users.Init([])
     .then(res => res.text())
     .then(body => console.log(body))
-
+```
 ### Select All :
-
-    users.SelectAll()
+```js
+users.SelectAll()
     .then(res => res.json())
     .then(body => console.log(body.content))
-
+```
 ### Create :
-
-    users.Create({name:'pierre'})
+```js
+users.Create({name:'pierre'})
     .then(res => res.text())
     .then(body => console.log(body))
-
+```
 ### Get where :
-
-    users.Get('name', 'pierre')
+```js
+users.Get('name', 'pierre')
     .then(res => res.text())
     .then(body => console.log(body))
-
+```
 *Get user when name is 'pierre'*
 
 ### Update :
-
+```js
     users.Put('name', 'pierre', 'jean')
     .then(res => res.text())
     .then(body => console.log(body))
-
+```
 *Update user when name is 'pierre' to 'jean'*
 
 ### Delete :
-
+```js
     users.Delete('name', 'jean')
     .then(res => res.text())
     .then(body => console.log(body))
-
+```
 *Delete user when name is 'jean'*
