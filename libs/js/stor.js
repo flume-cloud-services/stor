@@ -10,7 +10,7 @@ class Stor {
         this.link = link;
         this.token = token;
     }
-    Table (name) {
+    Table(name) {
         return new _Table(this.link, this.token, name);
     }
 }
@@ -26,10 +26,13 @@ class _Table {
      * @function Init - Init your Table with an object
      * @param { Object } content 
      */
-    async Init (content) { 
+    async Init(content) {
         return await fetch(`${this.link}/table/`, {
             method: 'POST',
-            body: JSON.stringify({name: this.name, content: content}),
+            body: JSON.stringify({
+                name: this.name,
+                content: content
+            }),
             headers: {
                 'Authorization': this.token,
                 'Content-Type': 'application/json'
