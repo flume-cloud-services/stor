@@ -23,12 +23,13 @@ And run :
 
 ## 2. Configuration
 
-Open and edit the configuration file `src/config.ts` :
+Stor uses Environment variable :
 
-    MongoUri is the link to your MongoDB database
-    PortNumber is the port number you want the database to run on
-    AuthToken is the token you will write for each request on the request header
-    Cors is the Cors config object : { enabled (if cors id enabled, by default is true), whitelist (optionnal, the domain you want to be validate) }
+    STOR_MONGO_URI is the link to your MongoDB database
+    STOR_PORT is the port number you want the database to run on
+    STOR_PASSWORD is the token you will write for each request on the request header
+    STOR_CORS is the Cors config object : 1 if cors is enabled, by default is true; 0 if cors is disabled
+    STOR_CORS_WHITELIST (optionnal, the domain you want to be validate) Example: STOR_CORS_WHITELIST=www.mydomain.com,www.myotherdomain.com
 
 Once you finished to complete this fields just transpile it :
 
