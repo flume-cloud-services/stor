@@ -51,7 +51,7 @@ Connect to your Stor database and select your table :
 ```js
 const stor = require("stor-js");
 
-const Stor = new stor.Stor("link to your Stor database", "Your AuthToken in your configuration file");
+const Stor = new stor.Stor("link to your Stor database", "STOR_PASSWORD");
 
 let users = Stor.Table("users");
 ```
