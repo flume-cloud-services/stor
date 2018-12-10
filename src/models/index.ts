@@ -15,4 +15,4 @@ const connection :VoidFunction = () => {
 
 export const Connect :VoidFunction = connection;
 
-export * from "./database.model";
+export * from "./table.model";

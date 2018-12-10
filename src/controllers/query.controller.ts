@@ -1,12 +1,14 @@
-import { Router, IRoute } from "express";
+import { Router, IRoute, Handler } from "express";
 import { Database } from "../models";
 import { AuthToken } from "../config";
 import * as crypto from "crypto";
+import { NextFunction } from "connect";
+import { Request, Response } from "express-serve-static-core";
 
 const router :Router = Router();
 
-const selectAll :IRoute = router.route("/all/:name/")
-selectAll.get((req, res, next) => {
+
+const selectAll :Handler = (req :Request, res :Response, next :NextFunction) => {
     if (req.get("Authentification") == AuthToken ) {
         Database.find({name: req.params.name}, (err: any, Mres: any[]) => {
             if (Mres[0]) {
@@ -29,10 +31,9 @@ selectAll.get((req, res, next) => {
     } else {
         res.send("Wrong Authentification token");
     }
-});
+};
 
-const where :IRoute = router.route("/:name/where/:obj/is/:is/");
-where.get((req, res, next) => {
+const whereGet :Handler = (req :Request, res :Response, next :NextFunction) => {
     if (req.get("Authentification") == AuthToken ) {
         Database.find({name: req.params.name}, (err :any, Mres :any[]) => {
             if (Mres[0]) {
@@ -54,6 +55,7 @@ where.get((req, res, next) => {
     } else {
         res.send("Wrong Authentification token");
     }
-});
+};
 
-export const QueryController :Router = router;
+export const selectAllFunc :Handler = selectAll;
+export const whereGetFunc :Handler = whereGet;

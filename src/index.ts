@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 
-import { DatabaseController, QueryController } from "./controllers";
+import { QueryRoutes, TableRoutes } from "./routes";
 import { Connect } from "./models";
 
 import { PortNumber } from "./config";
@@ -12,7 +12,7 @@ const app: express.Application = express();
 
 app.use(bodyParser.json())
 
-app.use("/database", DatabaseController);
-app.use("/query/", QueryController);
+app.use("/table/", TableRoutes);
+app.use("/query/", QueryRoutes);
 
 app.listen(PortNumber, () => console.log(PortNumber))

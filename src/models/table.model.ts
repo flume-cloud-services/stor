@@ -1,6 +1,6 @@
 import { Schema, Model, model } from "mongoose";
 
-const DatabaseSchema :Schema = new Schema({
+const TableSchema :Schema = new Schema({
     name: {
         type: String,
         required: true
@@ -15,15 +15,11 @@ const DatabaseSchema :Schema = new Schema({
     }
 });
 
-DatabaseSchema.methods.TableWhere = () => {
-    //
-};
+const TableModel :Model<any> = model("table", TableSchema);
 
-const DatabaseModel :Model<any> = model("database", DatabaseSchema);
+export const Table :Model<any> = TableModel;
 
-export const Database :Model<any> = DatabaseModel;
-
-export interface IDatabase {
+export interface ITable {
     name :string,
     content :string,
     password :string,

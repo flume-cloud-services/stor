@@ -1,27 +1,27 @@
-import { IRoute, Router } from "express";
-import { Database, IDatabase } from "../models";
+import { IRoute, Router, Handler } from "express";
+import { Table, ITable } from "../models";
 import { AuthToken } from "../config";
 import * as crypto from "crypto";
+import { Request, Response, NextFunction } from "express-serve-static-core";
 
 const router :Router = Router();
 
-const database :IRoute = router.route("/");
-database.post((req, res, next) => {
+const tablePost :Handler = (req :Request, res :Response, next :NextFunction) => {
     if (req.get("Authentification") == AuthToken ) {
         if (req.body.name && req.body.content) {
-            Database.find({name: req.body.name}, (err: any, Mres: any[]) => {
+            Table.find({name: req.body.name}, (err: any, Mres: any[]) => {
                 if (Mres[0]) {
                     res.send("Database already exists");
                 } else {
                     if (req.body.password) {
-                        let database :IDatabase = new Database();
+                        let database :ITable = new Table();
                         database.name = req.body.name;
                         database.content = req.body.content;
                         database.password = crypto.createHash("sha256").update(req.body.password).digest("base64");
                         database.save()
                         res.send(database.name + " created with " + database.content)
                     } else {
-                        let database :IDatabase = new Database();
+                        let database :ITable = new Table();
                         database.name = req.body.name;
                         database.content = JSON.stringify(req.body.content);
                         database.save();
@@ -33,12 +33,11 @@ database.post((req, res, next) => {
             res.send("Not enough parameters (name, content, ?password");
         }
     }
-});
+};
 
-const databaseByName :IRoute = router.route("/:name/");
-databaseByName.get((req, res, next) => {
+const tableByNameGet :Handler = (req :Request, res :Response, next :NextFunction) => {
     if (req.get("Authentification") == AuthToken ) {
-        Database.find({name: req.params.name}, (err: any, Mres: any[]) => {
+        Table.find({name: req.params.name}, (err: any, Mres: any[]) => {
             if (Mres[0]) {
                 if (Mres[0].password != null) {
                     if (req.get("Password")) {
@@ -59,6 +58,7 @@ databaseByName.get((req, res, next) => {
     } else {
         res.send("Wrong Authentification token");
     }
-});
+};
 
-export const DatabaseController: Router = router;
+export const tablePostFunc :Handler = tablePost;
+export const tableByNameGetFunc :Handler = tableByNameGet;
