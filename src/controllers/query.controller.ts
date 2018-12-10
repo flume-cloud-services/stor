@@ -1,5 +1,5 @@
 import { Router, IRoute, Handler } from "express";
-import { Database } from "../models";
+import { Table } from "../models";
 import { AuthToken } from "../config";
 import * as crypto from "crypto";
 import { NextFunction } from "connect";
@@ -10,7 +10,7 @@ const router :Router = Router();
 
 const selectAll :Handler = (req :Request, res :Response, next :NextFunction) => {
     if (req.get("Authentification") == AuthToken ) {
-        Database.find({name: req.params.name}, (err: any, Mres: any[]) => {
+        Table.find({name: req.params.name}, (err: any, Mres: any[]) => {
             if (Mres[0]) {
                 if (Mres[0].password != null) {
                     if (req.get("Password")) {
@@ -35,7 +35,7 @@ const selectAll :Handler = (req :Request, res :Response, next :NextFunction) => 
 
 const whereGet :Handler = (req :Request, res :Response, next :NextFunction) => {
     if (req.get("Authentification") == AuthToken ) {
-        Database.find({name: req.params.name}, (err :any, Mres :any[]) => {
+        Table.find({name: req.params.name}, (err :any, Mres :any[]) => {
             if (Mres[0]) {
                 let state :number = 0;
                 const content :any[] = JSON.parse(Mres[0].content);
